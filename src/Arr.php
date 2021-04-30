@@ -587,10 +587,15 @@ class Arr
      *
      * @param  array  $array
      * @param  callable  $callback
+     * @param  string|int|null  $key
      * @return array
      */
-    public static function where($array, callable $callback)
+    public static function where($array, callable $callback, $key = null)
     {
+        if (!is_null($key)) {
+            $array = static::get($array, $key, []);
+        }
+
         return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
     }
 
