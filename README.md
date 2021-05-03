@@ -1,4 +1,4 @@
-# Dot Array - Access array using dot notation in PHP
+# PHP Dot Array - Access array using dot notation in PHP
 *PHP Dot Array* is a lightweight library that has few **Helper** methods for array and also provides an easy way of accessing arrays using **Dot notation**.
 
 This is a standalone version of Laravel's *Illuminate\Support\Arr*.
