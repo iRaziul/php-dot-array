@@ -145,7 +145,7 @@ These are the available methods:
 
 
 ## Suggestion/Issues
-If you found any issues or have any suggestion then please create an [issue](https://github.com/iRaziul/php-dot-array).
+If you found any issues or have any suggestion then please create an [issue](https://github.com/iRaziul/php-dot-array/issues).
 
 You can also submit PR regarding any issues.
 
