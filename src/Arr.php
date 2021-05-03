@@ -135,7 +135,7 @@ class Arr
      */
     public static function except($array, $keys)
     {
-        static::forget($array, $keys);
+        static::remove($array, $keys);
 
         return $array;
     }
@@ -235,7 +235,7 @@ class Arr
      * @param  array|string  $keys
      * @return void
      */
-    public static function forget(&$array, $keys)
+    public static function remove(&$array, $keys)
     {
         $original = &$array;
         $keys = (array) $keys;
@@ -432,7 +432,7 @@ class Arr
     {
         $value = static::get($array, $key, $default);
 
-        static::forget($array, $key);
+        static::remove($array, $key);
 
         return $value;
     }
