@@ -29,17 +29,23 @@ class Arr
      * Add an element to an array using "dot" notation if it doesn't exist.
      *
      * @param array $array
-     * @param string $key
-     * @param mixed $value
-     * @return array
+     * @param string|array $key
+     * @param mixed|null $value
+     * @return void
      */
-    public static function add(array &$array, $key, $value)
+    public static function add(&$array, $key, $value = null)
     {
+        if (is_array($key)) {
+            foreach ($key as $keys => $value) {
+                static::add($array, $keys, $value);
+            }
+
+            return;
+        }
+
         if (is_null(static::get($array, $key))) {
             static::set($array, $key, $value);
         }
-
-        return $array;
     }
 
     /**
@@ -488,14 +494,18 @@ class Arr
      * If no key is given to the method, the entire array will be replaced.
      *
      * @param  array  $array
-     * @param  string|null  $key
-     * @param  mixed  $value
-     * @return array
+     * @param  string|array  $key
+     * @param  mixed|null  $value
+     * @return void
      */
-    public static function set(&$array, $key, $value)
+    public static function set(&$array, $key, $value = null)
     {
-        if (is_null($key)) {
-            return $array = $value;
+        if (is_array($key)) {
+            foreach ($key as $keys => $value) {
+                static::set($array, $keys, $value);
+            }
+
+            return;
         }
 
         $keys = explode('.', $key);
@@ -507,9 +517,7 @@ class Arr
 
             unset($keys[$i]);
 
-            // If the key doesn't exist at this depth, we will just create an empty array
-            // to hold the next value, allowing us to create the arrays to hold final
-            // values at the correct depth. Then we'll keep digging into the array.
+            // key doesn't exist? create an empty array to hold the next value
             if (!isset($array[$key]) || !is_array($array[$key])) {
                 $array[$key] = [];
             }
@@ -518,8 +526,6 @@ class Arr
         }
 
         $array[array_shift($keys)] = $value;
-
-        return $array;
     }
 
     /**
