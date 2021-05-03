@@ -33,7 +33,7 @@ class Arr
      * @param mixed $value
      * @return array
      */
-    public static function add(array $array, $key, $value)
+    public static function add(array &$array, $key, $value)
     {
         if (is_null(static::get($array, $key))) {
             static::set($array, $key, $value);
